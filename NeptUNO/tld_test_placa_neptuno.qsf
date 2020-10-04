@@ -1,0 +1,350 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2018  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+# Date created = 10:13:28  August 27, 2018
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		tld_test_placa_neptuno_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE55F23C8
+set_global_assignment -name TOP_LEVEL_ENTITY tld_test_placa_neptuno
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.0.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:13:28  AUGUST 27, 2018"
+set_global_assignment -name LAST_QUARTUS_VERSION "17.0.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+
+# Reloj
+set_location_assignment PIN_T2 -to clk50mhz
+
+# Video
+set_location_assignment PIN_B3 -to hsync
+set_location_assignment PIN_B2 -to vsync
+set_location_assignment PIN_R1 -to b[5]
+set_location_assignment PIN_P1 -to b[4]
+set_location_assignment PIN_N1 -to b[3]
+set_location_assignment PIN_M1 -to b[2]
+set_location_assignment PIN_J1 -to b[1]
+set_location_assignment PIN_H1 -to b[0]
+set_location_assignment PIN_P2 -to g[5]
+set_location_assignment PIN_N2 -to g[4]
+set_location_assignment PIN_M2 -to g[3]
+set_location_assignment PIN_J2 -to g[2]
+set_location_assignment PIN_H2 -to g[1]
+set_location_assignment PIN_F2 -to g[0]
+set_location_assignment PIN_F1 -to r[5]
+set_location_assignment PIN_D2 -to r[4]
+set_location_assignment PIN_E1 -to r[3]
+set_location_assignment PIN_C2 -to r[2]
+set_location_assignment PIN_C1 -to r[1]
+set_location_assignment PIN_B1 -to r[0]
+
+# Teclado y ratón
+set_location_assignment PIN_N19 -to clkps2
+set_location_assignment PIN_N20 -to dataps2
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to clkps2
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to dataps2
+set_location_assignment PIN_C21 -to mouseclk
+set_location_assignment PIN_B21 -to mousedata
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to mouseclk
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to mousedata
+
+# Audio
+set_location_assignment PIN_A3 -to audio_out_left
+set_location_assignment PIN_B4 -to audio_out_right
+
+# SDRAM
+set_location_assignment PIN_V2 -to sdram_addr[0]
+set_location_assignment PIN_V1 -to sdram_addr[1]
+set_location_assignment PIN_U2 -to sdram_addr[2]
+set_location_assignment PIN_U1 -to sdram_addr[3]
+set_location_assignment PIN_V3 -to sdram_addr[4]
+set_location_assignment PIN_V4 -to sdram_addr[5]
+set_location_assignment PIN_Y2 -to sdram_addr[6]
+set_location_assignment PIN_AA1 -to sdram_addr[7]
+set_location_assignment PIN_Y3 -to sdram_addr[8]
+set_location_assignment PIN_V5 -to sdram_addr[9]
+set_location_assignment PIN_W1 -to sdram_addr[10]
+set_location_assignment PIN_Y4 -to sdram_addr[11]
+set_location_assignment PIN_V6 -to sdram_addr[12]
+#
+set_location_assignment PIN_AA10 -to sdram_dq[0]
+set_location_assignment PIN_AB9 -to sdram_dq[1]
+set_location_assignment PIN_AA9 -to sdram_dq[2]
+set_location_assignment PIN_AB8 -to sdram_dq[3]
+set_location_assignment PIN_AA8 -to sdram_dq[4]
+set_location_assignment PIN_AB7 -to sdram_dq[5]
+set_location_assignment PIN_AA7 -to sdram_dq[6]
+set_location_assignment PIN_AB5 -to sdram_dq[7]
+set_location_assignment PIN_Y7 -to sdram_dq[8]
+set_location_assignment PIN_W8 -to sdram_dq[9]
+set_location_assignment PIN_Y8 -to sdram_dq[10]
+set_location_assignment PIN_V9 -to sdram_dq[11]
+set_location_assignment PIN_V10 -to sdram_dq[12]
+set_location_assignment PIN_Y10 -to sdram_dq[13]
+set_location_assignment PIN_W10 -to sdram_dq[14]
+set_location_assignment PIN_V11 -to sdram_dq[15]
+#
+set_location_assignment PIN_W6 -to sdram_cke
+set_location_assignment PIN_Y6 -to sdram_clk
+set_location_assignment PIN_AA4 -to sdram_cas_n
+set_location_assignment PIN_AB3 -to sdram_ras_n
+set_location_assignment PIN_AB4 -to sdram_we_n
+set_location_assignment PIN_AA3 -to sdram_cs_n
+#
+set_location_assignment PIN_Y1 -to sdram_ba[0]
+set_location_assignment PIN_W2 -to sdram_ba[1]
+set_location_assignment PIN_AA5 -to sdram_dqml_n
+set_location_assignment PIN_W7 -to sdram_dqmh_n
+#
+
+# LEDs en placa anexa
+set_location_assignment PIN_E3 -to testled1
+
+# Flash
+
+
+# SDCard
+set_location_assignment PIN_E22 -to sd_clk
+set_location_assignment PIN_D22 -to sd_cs_n
+set_location_assignment PIN_E21 -to sd_miso
+set_location_assignment PIN_D21 -to sd_mosi
+
+# Joysticks
+
+# Puerto serie
+
+set_global_assignment -name ENABLE_OCT_DONE OFF
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name RESERVE_DATA0_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_DATA1_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_FLASH_NCE_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_DCLK_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_A20 -to JOY_CLK
+set_location_assignment PIN_B20 -to JOY_LOAD
+set_location_assignment PIN_B19 -to JOY_DATA
+set_location_assignment PIN_AA18 -to joyP7_o
+set_global_assignment -name VERILOG_FILE ../common/ramtest.v
+set_global_assignment -name VERILOG_FILE ../common/joydecoder.v
+set_global_assignment -name VERILOG_FILE tld_test_placa_neptuno.v
+set_global_assignment -name VERILOG_FILE relojes.v
+set_global_assignment -name VERILOG_FILE ../common/video_processor.v
+set_global_assignment -name VERILOG_FILE ../common/vga_scandoubler.v
+set_global_assignment -name VERILOG_FILE ../common/sync_generator_pal_ntsc.v
+set_global_assignment -name VERILOG_FILE ../common/switch_mode.v
+set_global_assignment -name VERILOG_FILE ../common/spi.v
+set_global_assignment -name VERILOG_FILE ../common/sdtest.v
+set_global_assignment -name VERILOG_FILE ../common/sdramtest.v
+set_global_assignment -name VERILOG_FILE ../common/sdram_controller.v
+set_global_assignment -name VERILOG_FILE ../common/ps2_port.v
+set_global_assignment -name VERILOG_FILE ../common/mousetest.v
+set_global_assignment -name VERILOG_FILE ../common/flashtest.v
+set_global_assignment -name VERILOG_FILE ../common/audio_test.v
+set_global_assignment -name VHDL_FILE ../common/joystick_Sega_6_buttons.vhd
+set_location_assignment PIN_A17 -to sram_addr[18]
+set_location_assignment PIN_B18 -to sram_addr[17]
+set_location_assignment PIN_A18 -to sram_addr[16]
+set_location_assignment PIN_A19 -to sram_addr[15]
+set_location_assignment PIN_A5 -to sram_addr[14]
+set_location_assignment PIN_A15 -to sram_addr[13]
+set_location_assignment PIN_B6 -to sram_addr[12]
+set_location_assignment PIN_A14 -to sram_addr[11]
+set_location_assignment PIN_A8 -to sram_addr[10]
+set_location_assignment PIN_B13 -to sram_addr[9]
+set_location_assignment PIN_B10 -to sram_addr[8]
+set_location_assignment PIN_B14 -to sram_addr[7]
+set_location_assignment PIN_B15 -to sram_addr[6]
+set_location_assignment PIN_B9 -to sram_addr[5]
+set_location_assignment PIN_A7 -to sram_addr[4]
+set_location_assignment PIN_A6 -to sram_addr[3]
+set_location_assignment PIN_B5 -to sram_addr[2]
+set_location_assignment PIN_C3 -to sram_addr[1]
+set_location_assignment PIN_A4 -to sram_addr[0]
+set_location_assignment PIN_B17 -to sram_data[7]
+set_location_assignment PIN_A16 -to sram_data[6]
+set_location_assignment PIN_B16 -to sram_data[5]
+set_location_assignment PIN_C4 -to sram_data[4]
+set_location_assignment PIN_A9 -to sram_data[3]
+set_location_assignment PIN_B8 -to sram_data[2]
+set_location_assignment PIN_A13 -to sram_data[1]
+set_location_assignment PIN_B7 -to sram_data[0]
+set_location_assignment PIN_A10 -to sram_we_n
+
+set_location_assignment PIN_AB15 -to sram_addr[20]
+set_location_assignment PIN_U21 -to sram_addr[19]
+set_location_assignment PIN_AA16 -to sram_lb_n
+set_location_assignment PIN_R2 -to sram_ub_n
+set_location_assignment PIN_F22 -to sram_data[8]
+set_location_assignment PIN_H21 -to sram_data[9]
+set_location_assignment PIN_H22 -to sram_data[10]
+set_location_assignment PIN_L22 -to sram_data[11]
+set_location_assignment PIN_M22 -to sram_data[12]
+set_location_assignment PIN_L21 -to sram_data[13]
+set_location_assignment PIN_J22 -to sram_data[14]
+set_location_assignment PIN_F21 -to sram_data[15]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to sd_mosi
+set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "PASSIVE SERIAL"
+
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to JOY_DATA
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to JOY_LOAD
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to audio_out_left
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to audio_out_right
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to b[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to b[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to b[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to b[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to b[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to b[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk50mhz
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clkps2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dataps2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to g[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to g[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to g[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to g[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to g[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to g[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hsync
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to joyP7_o
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mouseclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mousedata
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to r[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to r[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to r[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to r[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to r[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to r[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sd_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sd_cs_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sd_miso
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sd_mosi
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_addr[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_ba[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_ba[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_cas_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_cke
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_cs_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dq[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dqmh_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_dqml_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_ras_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sdram_we_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[20]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[19]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[18]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[17]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[16]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_addr[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_data[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_lb_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_ub_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sram_we_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to testled1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vsync
+set_location_assignment PIN_Y21 -to stm_rst_o
+set_location_assignment PIN_AA20 -to sram_oe_n
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

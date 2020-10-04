@@ -1,0 +1,173 @@
+
+State Machine - |tld_test_placa_neptuno|updater:mensajes|retorno_de_sendchar
+Name retorno_de_sendchar.SENDSTR 
+retorno_de_sendchar.PUTVIDEO 0 
+retorno_de_sendchar.SENDSTR 1 
+
+State Machine - |tld_test_placa_neptuno|updater:mensajes|retorno_de_sendstr
+Name retorno_de_sendstr.PUTSDRAMTEST1 retorno_de_sendstr.PUTSDRAMTEST retorno_de_sendstr.PUTMOUSETEST retorno_de_sendstr.PUTSDTEST1 retorno_de_sendstr.PUTSDTEST retorno_de_sendstr.PUTJOYTEST2 retorno_de_sendstr.PUTJOYTEST1 retorno_de_sendstr.PUTRAMTEST1 retorno_de_sendstr.PUTRAMTEST retorno_de_sendstr.PUTVIDEO 
+retorno_de_sendstr.PUTVIDEO 0 0 0 0 0 0 0 0 0 0 
+retorno_de_sendstr.PUTRAMTEST 0 0 0 0 0 0 0 0 1 1 
+retorno_de_sendstr.PUTRAMTEST1 0 0 0 0 0 0 0 1 0 1 
+retorno_de_sendstr.PUTJOYTEST1 0 0 0 0 0 0 1 0 0 1 
+retorno_de_sendstr.PUTJOYTEST2 0 0 0 0 0 1 0 0 0 1 
+retorno_de_sendstr.PUTSDTEST 0 0 0 0 1 0 0 0 0 1 
+retorno_de_sendstr.PUTSDTEST1 0 0 0 1 0 0 0 0 0 1 
+retorno_de_sendstr.PUTMOUSETEST 0 0 1 0 0 0 0 0 0 1 
+retorno_de_sendstr.PUTSDRAMTEST 0 1 0 0 0 0 0 0 0 1 
+retorno_de_sendstr.PUTSDRAMTEST1 1 0 0 0 0 0 0 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|updater:mensajes|estado
+Name estado.SENDSTR1 estado.SENDSTR estado.SENDCHAR1 estado.SENDCHAR estado.PUTSDRAMTEST1 estado.PUTSDRAMTEST estado.PUTMOUSETEST estado.PUTSDTEST1 estado.PUTSDTEST estado.PUTJOYTEST2 estado.PUTJOYTEST1 estado.PUTRAMTEST1 estado.PUTRAMTEST estado.PUTVIDEO 
+estado.PUTVIDEO 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+estado.PUTRAMTEST 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+estado.PUTRAMTEST1 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+estado.PUTJOYTEST1 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+estado.PUTJOYTEST2 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+estado.PUTSDTEST 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+estado.PUTSDTEST1 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+estado.PUTMOUSETEST 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+estado.PUTSDRAMTEST 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+estado.PUTSDRAMTEST1 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+estado.SENDCHAR 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+estado.SENDCHAR1 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+estado.SENDSTR 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+estado.SENDSTR1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|updater:mensajes|teletype:teletipo|estado
+Name estado.PUTCHAR estado.CLS estado.ATC estado.ATR estado.PCOMMAND estado.IDLE 
+estado.IDLE 0 0 0 0 0 0 
+estado.PCOMMAND 0 0 0 0 1 1 
+estado.ATR 0 0 0 1 0 1 
+estado.ATC 0 0 1 0 0 1 
+estado.CLS 0 1 0 0 0 1 
+estado.PUTCHAR 1 0 0 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|sdramtest:test_sdram|state
+Name state.REFRESH_AFTER_CHK state.REFRESH_AFTER_UPDATE state.REFRESH_AFTER_WRITE state.CHK_DATA state.UPDATE_DATA state.READ_DATA state.WRITE_DATA state.RESET 
+state.RESET 0 0 0 0 0 0 0 0 
+state.WRITE_DATA 0 0 0 0 0 0 1 1 
+state.READ_DATA 0 0 0 0 0 1 0 1 
+state.UPDATE_DATA 0 0 0 0 1 0 0 1 
+state.CHK_DATA 0 0 0 1 0 0 0 1 
+state.REFRESH_AFTER_WRITE 0 0 1 0 0 0 0 1 
+state.REFRESH_AFTER_UPDATE 0 1 0 0 0 0 0 1 
+state.REFRESH_AFTER_CHK 1 0 0 0 0 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|sdramtest:test_sdram|sdram_controller:controlador|reg_return_state
+Name reg_return_state.ISSUE_WRITE reg_return_state.GET_DATA reg_return_state.ISSUE_READ reg_return_state.IDLE reg_return_state.INIT_LOAD_MODE reg_return_state.INIT_AUTOREFRESH2 reg_return_state.INIT_AUTOREFRESH1 reg_return_state.INIT_PRECHARGEALL reg_return_state.RESET 
+reg_return_state.RESET 0 0 0 0 0 0 0 0 0 
+reg_return_state.INIT_PRECHARGEALL 0 0 0 0 0 0 0 1 1 
+reg_return_state.INIT_AUTOREFRESH1 0 0 0 0 0 0 1 0 1 
+reg_return_state.INIT_AUTOREFRESH2 0 0 0 0 0 1 0 0 1 
+reg_return_state.INIT_LOAD_MODE 0 0 0 0 1 0 0 0 1 
+reg_return_state.IDLE 0 0 0 1 0 0 0 0 1 
+reg_return_state.ISSUE_READ 0 0 1 0 0 0 0 0 1 
+reg_return_state.GET_DATA 0 1 0 0 0 0 0 0 1 
+reg_return_state.ISSUE_WRITE 1 0 0 0 0 0 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|sdramtest:test_sdram|sdram_controller:controlador|state
+Name state.DO_AUTOREFRESH state.ISSUE_WRITE state.ACTIVE_ROW_WRITE state.GET_DATA state.ISSUE_READ state.ACTIVE_ROW_READ state.IDLE state.INIT_LOAD_MODE state.INIT_AUTOREFRESH2 state.INIT_AUTOREFRESH1 state.INIT_PRECHARGEALL state.RESET state.WAIT_STATES 
+state.RESET 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.INIT_PRECHARGEALL 0 0 0 0 0 0 0 0 0 0 1 1 0 
+state.INIT_AUTOREFRESH1 0 0 0 0 0 0 0 0 0 1 0 1 0 
+state.INIT_AUTOREFRESH2 0 0 0 0 0 0 0 0 1 0 0 1 0 
+state.INIT_LOAD_MODE 0 0 0 0 0 0 0 1 0 0 0 1 0 
+state.IDLE 0 0 0 0 0 0 1 0 0 0 0 1 0 
+state.ACTIVE_ROW_READ 0 0 0 0 0 1 0 0 0 0 0 1 0 
+state.ISSUE_READ 0 0 0 0 1 0 0 0 0 0 0 1 0 
+state.GET_DATA 0 0 0 1 0 0 0 0 0 0 0 1 0 
+state.ACTIVE_ROW_WRITE 0 0 1 0 0 0 0 0 0 0 0 1 0 
+state.ISSUE_WRITE 0 1 0 0 0 0 0 0 0 0 0 1 0 
+state.DO_AUTOREFRESH 1 0 0 0 0 0 0 0 0 0 0 1 0 
+state.WAIT_STATES 0 0 0 0 0 0 0 0 0 0 0 1 1 
+
+State Machine - |tld_test_placa_neptuno|mousetest:test_raton|estado
+Name estado.FRAME3 estado.FRAME2 estado.FRAME1 estado.WAITINIT estado.DEACTIVATELOAD estado.INITMOUSE 
+estado.INITMOUSE 0 0 0 0 0 0 
+estado.DEACTIVATELOAD 0 0 0 0 1 1 
+estado.WAITINIT 0 0 0 1 0 1 
+estado.FRAME1 0 0 1 0 0 1 
+estado.FRAME2 0 1 0 0 0 1 
+estado.FRAME3 1 0 0 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|mousetest:test_raton|ps2_host_to_kb:escritura_a_raton|state
+Name state.110 state.101 state.100 state.011 state.010 state.001 state.000 
+state.000 0 0 0 0 0 0 0 
+state.001 0 0 0 0 0 1 1 
+state.010 0 0 0 0 1 0 1 
+state.011 0 0 0 1 0 0 1 
+state.100 0 0 1 0 0 0 1 
+state.101 0 1 0 0 0 0 1 
+state.110 1 0 0 0 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|mousetest:test_raton|ps2_port:lectura_de_raton|state
+Name state.11 state.10 state.01 state.00 
+state.00 0 0 0 0 
+state.01 0 0 1 1 
+state.10 0 1 0 1 
+state.11 1 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|sdtest:test_slot_sd|retorno_de_recvspi
+Name retorno_de_recvspi.CHECK 
+retorno_de_recvspi.SENDCLOCKS 0 
+retorno_de_recvspi.CHECK 1 
+
+State Machine - |tld_test_placa_neptuno|sdtest:test_slot_sd|retorno_de_sendspi
+Name retorno_de_sendspi.SENDCMD0 retorno_de_sendspi.SENDCLOCKS retorno_de_sendspi.HALT retorno_de_sendspi.SEND8CLOCKS 
+retorno_de_sendspi.SENDCLOCKS 0 0 0 0 
+retorno_de_sendspi.SEND8CLOCKS 0 1 0 1 
+retorno_de_sendspi.SENDCMD0 1 1 0 0 
+retorno_de_sendspi.HALT 0 1 1 0 
+
+State Machine - |tld_test_placa_neptuno|sdtest:test_slot_sd|estado
+Name estado.WAITRECV estado.WAIT1CLKRECV estado.OKTORECV estado.RECVSPI estado.WAITSEND estado.WAIT1CLKSEND estado.OKTOSEND estado.SENDSPI estado.HALT estado.SPARECLOCKS estado.CHECK estado.RESPUESTA estado.SENDCMD0 estado.SEND8CLOCKS estado.SENDCLOCKS 
+estado.SENDCLOCKS 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+estado.SEND8CLOCKS 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+estado.SENDCMD0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+estado.RESPUESTA 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+estado.CHECK 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+estado.SPARECLOCKS 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+estado.HALT 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+estado.SENDSPI 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+estado.OKTOSEND 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+estado.WAIT1CLKSEND 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+estado.WAITSEND 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+estado.RECVSPI 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+estado.OKTORECV 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+estado.WAIT1CLKRECV 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+estado.WAITRECV 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|ramtest:test_de_ram|retorno_de_read
+Name retorno_de_read.ADD retorno_de_read.INIT retorno_de_read.INCCHECK 
+retorno_de_read.INIT 0 0 0 
+retorno_de_read.ADD 1 1 0 
+retorno_de_read.INCCHECK 0 1 1 
+
+State Machine - |tld_test_placa_neptuno|ramtest:test_de_ram|retorno_de_write
+Name retorno_de_write.INIT retorno_de_write.INCWRITE retorno_de_write.INCMODIFY 
+retorno_de_write.INIT 0 0 0 
+retorno_de_write.INCWRITE 1 1 0 
+retorno_de_write.INCMODIFY 1 0 1 
+
+State Machine - |tld_test_placa_neptuno|ramtest:test_de_ram|estado
+Name estado.WRITE2 estado.WRITE estado.READ estado.HALT estado.INCCHECK estado.CHECK estado.INCMODIFY estado.ADD estado.ADDSTORE estado.INCWRITE estado.DATOINICIAL estado.INIT 
+estado.INIT 0 0 0 0 0 0 0 0 0 0 0 0 
+estado.DATOINICIAL 0 0 0 0 0 0 0 0 0 0 1 1 
+estado.INCWRITE 0 0 0 0 0 0 0 0 0 1 0 1 
+estado.ADDSTORE 0 0 0 0 0 0 0 0 1 0 0 1 
+estado.ADD 0 0 0 0 0 0 0 1 0 0 0 1 
+estado.INCMODIFY 0 0 0 0 0 0 1 0 0 0 0 1 
+estado.CHECK 0 0 0 0 0 1 0 0 0 0 0 1 
+estado.INCCHECK 0 0 0 0 1 0 0 0 0 0 0 1 
+estado.HALT 0 0 0 1 0 0 0 0 0 0 0 1 
+estado.READ 0 0 1 0 0 0 0 0 0 0 0 1 
+estado.WRITE 0 1 0 0 0 0 0 0 0 0 0 1 
+estado.WRITE2 1 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |tld_test_placa_neptuno|switch_mode:teclas|ps2_port:teclado|state
+Name state.11 state.10 state.01 state.00 
+state.00 0 0 0 0 
+state.01 0 0 1 1 
+state.10 0 1 0 1 
+state.11 1 0 0 1 
