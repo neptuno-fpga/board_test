@@ -41,14 +41,14 @@ module sega_joystick
 	input         joy2_p9_i,
 	output        joyX_p7_o,  // -- send to Select pin 7 of the Megadrive Joystick
 	input         vga_hsync_n_s,
-	output [11:0] joy1_o, // -- MS ZYX CBA RLDU
-	output [11:0] joy2_o  // -- MS ZYX CBA RLDU 
+	output wire [11:0] joy1_o, // -- MS ZYX CBA RLDU
+	output wire [11:0] joy2_o  // -- MS ZYX CBA RLDU 
 );
  
 //----   Joystick read with sega 6 button support  ---------------------- 
 
-   reg [11:0]joy1_s; 	
-	reg [11:0]joy2_s; 
+   reg [11:0]joy1_s = 12'hFFF; 	
+	reg [11:0]joy2_s = 12'hFFF; 
 	reg joyP7_s;
 
 	reg [7:0]state_v = 8'd0;

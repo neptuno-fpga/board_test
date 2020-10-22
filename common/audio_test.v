@@ -22,16 +22,23 @@
 //////////////////////////////////////////////////////////////////////////////////
 module audio_test (
    input wire clk,  // 14MHz
+	input wire clk50mhz,  //50 Mhz
    output wire left,
    output wire right,
    output wire led1,
-   output wire led2
+   output wire led2,
+	output wire MCLK,
+	output wire SCLK,
+	output wire LRCLK,
+	output wire SDIN
    );
    
    reg [11:0] sample_addr = 12'd0;
    reg [7:0] sample;
    reg [12:0] cnt_2000 = 13'd0;
    reg leftright = 1'b0;
+	reg [15:0] sample16bits_s;  // registros para el I2S
+	wire [15:0] left_16bits, right_16bits;  // registros para el I2S
 
    reg [7:0] audiomem[0:3999];
    initial begin
@@ -43,6 +50,7 @@ module audio_test (
       if (cnt_2000 == 13'd6999) begin  // prescaler para pasar de 14MHz a 2kHz, que es nuestra frecuencia de muestreo
          cnt_2000 <= 13'd0;
          sample <= audiomem[sample_addr];
+			sample16bits_s <= {sample,sample} + 16'h8000;
          if (sample_addr == 12'd1999)  // Si hemos llegado a la mitad de la memoria
             leftright <= 1'b1;         // La memoria contiene en una mitad, el sample izquierdo, y en la otra mitad, el derecho
          if (sample_addr == 12'd3999) begin // Si hemos llegado al final de la memoria
@@ -62,6 +70,20 @@ module audio_test (
    assign right = (leftright == 1'b1)? aout : 1'b0;
    assign led1 = ~leftright;
    assign led2 = leftright;
+	assign left_16bits   = (leftright == 1'b0)? sample16bits_s : 16'b0;
+	assign right_16bits  = (leftright == 1'b1)? sample16bits_s : 16'b0;
+
+	// Instacia I2S audio
+	audio_top audio_top  
+	(
+		.clk_50MHz		(clk50mhz),
+		.dac_MCLK		(MCLK),
+		.dac_LRCK		(LRCLK),
+		.dac_SCLK		(SCLK),
+		.dac_SDIN		(SDIN),
+		.L_data			(left_16bits),
+		.R_data			(right_16bits)
+	); 
 endmodule
 
 `define MSBI 7 // Most significant Bit of DAC input

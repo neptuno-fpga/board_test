@@ -434,7 +434,7 @@ module updater (
       stringlist[48] = " ";
       stringlist[49] = 8'hFF;
 
-/*		// PARA 6 BOTONES
+		// PARA 6 BOTONES
       stringlist[50] = 8'd22;  // ADDRATJOY1
       stringlist[51] = 8'd6;
       stringlist[52] = 8'd21;
@@ -460,7 +460,8 @@ module updater (
       stringlist[71] = 8'hFF;
       stringlist[72] = 8'hFF;
       stringlist[73] = 8'hFF;
-*/
+/*
+		// PARA 2 BOTONES
       stringlist[50] = 8'd22;  // ADDRATJOY1
       stringlist[51] = 8'd6;
       stringlist[52] = 8'd21;
@@ -486,6 +487,7 @@ module updater (
       stringlist[71] = 8'hFF;
       stringlist[72] = 8'hFF;
       stringlist[73] = 8'hFF;
+*/
 		
       stringlist[78] = 8'd22;  // ADDRATMOUSE
       stringlist[79] = 8'd10;
@@ -579,16 +581,18 @@ module updater (
                estado <= SENDSTR;
                retorno_de_sendstr <= PUTJOYTEST1;
             end
-/*		// PARA 6 BOTONES
+		// PARA 6 BOTONES
          PUTJOYTEST1:
             begin										// MXYZ SA UDLR BC 
-               stringlist[ADDRJOYSTATE1+3]  <= (joystick1[5] == 1'b1)? "U" : " ";
-               stringlist[ADDRJOYSTATE1+4]  <= (joystick1[4] == 1'b1)? "D" : " ";
-               stringlist[ADDRJOYSTATE1+5]  <= (joystick1[3] == 1'b1)? "L" : " ";
-               stringlist[ADDRJOYSTATE1+6]  <= (joystick1[2] == 1'b1)? "R" : " ";
-               stringlist[ADDRJOYSTATE1+7]  <= (joystick1[6] == 1'b1)? "A" : " ";
-               stringlist[ADDRJOYSTATE1+8]  <= (joystick1[1] == 1'b1)? "B" : " ";
-					stringlist[ADDRJOYSTATE1+9]  <= (joystick1[0] == 1'b1)? "C" : " ";
+				   stringlist[ADDRJOYSTATE1+3]  <= (|joystick1)? "1" : " ";
+               stringlist[ADDRJOYSTATE1+4]  <= (joystick1[5] == 1'b1)? "U" : (joystick2[5] == 1'b1)? "U" : " ";
+               stringlist[ADDRJOYSTATE1+5]  <= (joystick1[4] == 1'b1)? "D" : (joystick2[4] == 1'b1)? "D" : " ";
+               stringlist[ADDRJOYSTATE1+6]  <= (joystick1[3] == 1'b1)? "L" : (joystick2[3] == 1'b1)? "L" : " ";
+               stringlist[ADDRJOYSTATE1+7]  <= (joystick1[2] == 1'b1)? "R" : (joystick2[2] == 1'b1)? "R" : " ";
+               stringlist[ADDRJOYSTATE1+8]  <= (joystick1[6] == 1'b1)? "A" : (joystick2[6] == 1'b1)? "A" : " ";
+               stringlist[ADDRJOYSTATE1+9]  <= (joystick1[1] == 1'b1)? "B" : (joystick2[1] == 1'b1)? "B" : " ";
+					stringlist[ADDRJOYSTATE1+10]  <= (joystick1[0] == 1'b1)? "C" : (joystick2[0] == 1'b1)? "C" : " ";
+				
 					addrstr <= ADDRJOYSTATE1;
                estado <= SENDSTR;
                retorno_de_sendstr <= PUTJOYTEST2;
@@ -596,19 +600,20 @@ module updater (
 
          PUTJOYTEST2:
            begin										// MXYZ SA UDLR BC 
-              stringlist[ADDRJOYSTATE2+3]  <= (joystick1[10] == 1'b1)? "X" : " ";
-              stringlist[ADDRJOYSTATE2+4]  <= (joystick1[9] == 1'b1)? "Y" : " ";
-              stringlist[ADDRJOYSTATE2+5]  <= (joystick1[8] == 1'b1)? "Z" : " ";
-              stringlist[ADDRJOYSTATE2+6]  <= (joystick2[2] == 1'b1)? "R" : " ";
-				  stringlist[ADDRJOYSTATE2+6]  <=  " ";
-              stringlist[ADDRJOYSTATE2+7]  <= (joystick1[7] == 1'b1)? "S" : " ";
-              stringlist[ADDRJOYSTATE2+8]  <= (joystick1[11] == 1'b1)? "M" : " ";
-				  stringlist[ADDRJOYSTATE2+9]  <= (joystick2[0] == 1'b1)? "C" : " ";
+			     stringlist[ADDRJOYSTATE2+3]  <= (|joystick2)? "2" : " ";
+              stringlist[ADDRJOYSTATE2+4]  <= (joystick1[10] == 1'b1)? "X" : (joystick2[10] == 1'b1)? "X" : " ";
+              stringlist[ADDRJOYSTATE2+5]  <= (joystick1[9] == 1'b1)? "Y" : (joystick2[9] == 1'b1)? "Y" : " ";
+              stringlist[ADDRJOYSTATE2+6]  <= (joystick1[8] == 1'b1)? "Z" : (joystick2[8] == 1'b1)? "Z" : " ";
+				  stringlist[ADDRJOYSTATE2+7]  <=  " ";
+              stringlist[ADDRJOYSTATE2+8]  <= (joystick1[7] == 1'b1)? "S" : (joystick2[7] == 1'b1)? "S" : " ";
+              stringlist[ADDRJOYSTATE2+9]  <= (joystick1[11] == 1'b1)? "M" : (joystick2[11] == 1'b1)? "M" : " ";
+				  
               addrstr <= ADDRJOYSTATE2;
               estado <= SENDSTR;
               retorno_de_sendstr <= PUTSDTEST;
            end
-*/
+/*
+			// PARA 2 BOTONES
          PUTJOYTEST1:
             begin
                stringlist[ADDRJOYSTATE1+3]  <= (joystick1[5] == 1'b1)? "U" : " ";
@@ -634,7 +639,7 @@ module updater (
               estado <= SENDSTR;
               retorno_de_sendstr <= PUTSDTEST;
 				end
-
+*/
          PUTSDTEST:
             begin
                addrstr <= ADDRATSD;

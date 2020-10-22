@@ -43,7 +43,7 @@ module tld_test_placa_neptuno (
   //---------------------------
   
   output wire [20:0] sram_addr,
-  inout wire [15:0] sram_data,
+  inout  wire [15:0] sram_data,
   output wire sram_we_n,
   output wire sram_ub_n,
   output wire sram_lb_n,
@@ -78,10 +78,19 @@ module tld_test_placa_neptuno (
   output wire stm_rst_o = 1'b0
   );
 
+  wire [15:0] sram_data_int;
+  assign sram_data = sram_we_n ? (sram_oe_n ? {4'hZ, lrclk, sdin, sclk, mclk, 8'hZZ} : 16'hZZZZ) : sram_oe_n ? 16'hZZZZ : sram_data_int[15:0];
+  assign sram_data_int = sram_we_n ? sram_data[15:0] : 16'hZZZZ ;
   assign sram_ub_n = 1'b0;
   assign sram_lb_n = 1'b0;
   assign sram_addr[20] = 1'b0;
-  assign sram_oe_n = 1'b0;
+  assign sram_oe_n = ~memtest_progress;
+
+
+  wire mclk;
+  wire sclk;
+  wire lrclk;
+  wire sdin;
 
   wire clk100, clk100n, clk14, clk7;
   wire clocks_ready;
@@ -119,9 +128,9 @@ module tld_test_placa_neptuno (
 	
 	//assign joyP7_o = 1'b1;
 	
-	reg [11:0] joy1_o;
-	reg [11:0] joy2_o;
-
+	wire [11:0] joy1_o;
+	wire [11:0] joy2_o;
+	wire clk_joy;
   relojes los_relojes (
    .inclk0(clk50mhz),
    .c0(clk100),
@@ -135,7 +144,7 @@ module tld_test_placa_neptuno (
 // Llamamos a la instancia de los Joysticks
 
 	joydecoder los_joysticks (
-      .clk(clk100),
+      .clk(clk50mhz),
       .joy_data(JOY_DATA),
       .joy_clk(JOY_CLK),
       .joy_load_n(JOY_LOAD),
@@ -150,11 +159,12 @@ module tld_test_placa_neptuno (
       .joy2left(joy2left),
       .joy2right(joy2right),
       .joy2fire1(joy2fire1),
-      .joy2fire2(joy2fire2)
+      .joy2fire2(joy2fire2),
+		.hsync(hsync)
    );
-	assign joyP7_o = 1'bz;
+	// assign joyP7_o = 1'bz;
 
-/* // PARA 6 BOTONES
+// PARA 6 BOTONES
 // Llamamos a la maquina de estados para leer los 6 botones del mando de Megadrive
 // Formato joy1_o [11:0] =  MXYZ SACB RLDU		
   sega_joystick joy (
@@ -175,7 +185,6 @@ module tld_test_placa_neptuno (
 	 .joy1_o			(joy1_o),
 	 .joy2_o			(joy2_o)
  );
-*/
 
   switch_mode teclas (
     .clk(clk7),
@@ -199,7 +208,7 @@ module tld_test_placa_neptuno (
     .rstf(memtest_init_fast),
     .rsts(memtest_init_slow),
     .sram_a(sram_addr[19:0]),
-    .sram_d(sram_data),
+    .sram_d(sram_data_int),
     .sram_we_n(sram_we_n),
     .test_in_progress(memtest_progress),
     .test_result(memtest_result)
@@ -231,7 +240,7 @@ module tld_test_placa_neptuno (
     .pll_locked(clocks_ready),
     .test_in_progress(sdramtest_progress),
     .test_result(sdramtest_result),
-    .sdram_clk(sdram_clk),       // se�ales validas en flanco de suida de CK
+    .sdram_clk(sdram_clk),       // señales validas en flanco de suida de CK
     .sdram_cke(sdram_cke),
     .sdram_dqmh_n(sdram_dqmh_n),    // mascara para byte alto o bajo
     .sdram_dqml_n(sdram_dqml_n),    // durante operaciones de escritura
@@ -251,12 +260,12 @@ module tld_test_placa_neptuno (
 
 	 // PARA 6 BOTONES
 	 // joystick1 format -- MXYZ SA UDLR BC       joy1_o [11:0] -- MXYZ SACB RLDU	 
-	 //.joystick1({joy1_o[11], joy1_o[10],joy1_o[9],joy1_o[8],joy1_o[7],joy1_o[6],joy1_o[0],joy1_o[1],joy1_o[2],joy1_o[3],joy1_o[4],joy1_o[5]}),
+	 .joystick1(~{joy1_o[11], joy1_o[10],joy1_o[9],joy1_o[8],joy1_o[7],joy1_o[6],joy1_o[3],joy1_o[2],joy1_o[1],joy1_o[0],joy1_o[4],joy1_o[5]}),
 	 // joystick2 format -- MXYZ SA UDLR BC       joy2_o [11:0] -- MXYZ SACB RLDU 
-	 //.joystick2({joy2_o[11], joy2_o[10],joy2_o[9],joy2_o[8],joy2_o[7],joy2_o[6],joy2_o[0],joy2_o[1],joy2_o[2],joy2_o[3],joy2_o[4],joy2_o[5]}),  
+	 .joystick2(~{joy2_o[11], joy2_o[10],joy2_o[9],joy2_o[8],joy2_o[7],joy2_o[6],joy2_o[3],joy2_o[2],joy2_o[1],joy2_o[0],joy2_o[4],joy2_o[5]}),  
 
-	 .joystick1({joy1up,joy1down,joy1left,joy1right,joy1fire1,joy1fire2}),
-    .joystick2({joy2up,joy2down,joy2left,joy2right,joy2fire1,joy2fire2}),
+	 //.joystick1({joy1up,joy1down,joy1left,joy1right,joy1fire1,joy1fire2}),
+    //.joystick2({joy2up,joy2down,joy2left,joy2right,joy2fire1,joy2fire2}),
 
     .memtest_progress(memtest_progress),
     .memtest_result(memtest_result),
@@ -295,16 +304,17 @@ module tld_test_placa_neptuno (
     .hsync(hsync),
     .vsync(vsync)
   );
-  
+
   audio_test audio (
     .clk(clk14),
+    .clk50mhz(clk50mhz),
     .left(audio_out_left),
     .right(audio_out_right),
-    .led1(testled1)
+    .led1(testled1),
+    .MCLK(mclk),
+    .SCLK(sclk),
+    .LRCLK(lrclk),
+    .SDIN(sdin)
   );
-
-  
- 
-  
   
 endmodule
